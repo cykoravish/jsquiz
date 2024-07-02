@@ -12,13 +12,12 @@ export default function AuthForm(prop) {
   const { setUsername } = useContext(AuthContext);
 
   const navigate = useNavigate();
- 
+
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
     password: "",
   });
-
 
   function handleChange(e) {
     setUserData({
@@ -33,9 +32,8 @@ export default function AuthForm(prop) {
 
     try {
       const validatedData = userSchema.parse(userData);
-  
       const response = await axios.post(
-        `http://localhost:5000/api/quiz/${prop.api}`,
+        `${import.meta.env.VITE_API_URL}/api/quiz/${prop.api}`,
         validatedData,
         {
           headers: {
@@ -48,21 +46,18 @@ export default function AuthForm(prop) {
       const result = response.data;
 
       showToast(result.message, "success");
- 
+
       setUserData({
         username: "",
         password: "",
       });
 
-   
-   
       if (prop.api === "register") {
-        navigate("/login"); 
+        navigate("/login");
       } else if (prop.api === "login") {
         setUsername(result.user.username);
         navigate("/dashboard");
       }
-    
     } catch (error) {
       const zodError = error?.errors?.length > 0 && error.errors[0].message;
       showToast(

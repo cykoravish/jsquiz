@@ -30,7 +30,9 @@ const PlayQuiz = () => {
   const fetchQuestions = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/quiz");
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/quiz`
+      );
       setQuestions(response.data);
     } catch (error) {
       setError("Error fetching questions. Please try again later.");
@@ -124,7 +126,7 @@ const PlayQuiz = () => {
                   ? "cursor-not-allowed"
                   : ""
               }`}
-              disabled={isCorrect && selectedOption !== option} 
+              disabled={isCorrect && selectedOption !== option}
             >
               {option}
             </button>
