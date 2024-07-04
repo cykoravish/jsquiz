@@ -38,6 +38,7 @@ export default function AuthForm(prop) {
         {
           headers: {
             "Content-Type": "application/json",
+            Origin: "https://webdevquiz.online",
           },
           withCredentials: true,
         }
