@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         reverseOrder={false}
         toastOptions={{
           success: {
-            icon: "🎉", 
+            icon: "🎉",
             duration: 3000,
             style: {
               border: "2px solid #4CAF50",
